@@ -1,0 +1,30 @@
+FOR MOSQUITTO
+docker compose ps - for check status of server
+
+docker exec -it mqtt sh
+To add more users to the password file- mosquitto_passwd -b /mosquitto/config/password user_name password
+If you want to remove a user, run: mosquitto_passwd -D /mosquitto/passwd_file user_name
+exit
+-b : run in batch mode to allow passing passwords on the command line.
+ -c : create a new password file. This will overwrite existing files.
+ -D : delete the username rather than adding/updating its password.
+ -H : specify the hashing algorithm. Defaults to sha512-pbkdf2, which is recommended.
+      Mosquitto 1.6 and earlier defaulted to sha512.
+ -U : update a plain text password file to use hashed passwords.
+
+docker compose up - start server
+docker compose down - stop
+
+FOR REDIS
+docker run --name demo-redis -p 6379:6379 -d redis - start server
+docker container stop demo-redis - stop the redis instance
+
+docker container rm demo-redis - remove the redis container
+
+    # def extract_data(message):
+    #     return message['data']
+    # while True:
+    #     message = sms.get_message()
+        
+    #     if message:
+    #         await callback.message.answer(f'{extract_data(message)}')
